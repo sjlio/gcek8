@@ -5,16 +5,16 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: nginx # build a nginx container based on this nginx class
     nginx.ingress.kubernetes.io/rewrite-target: / # define how nginx behave
-    # certmanager.k8s.io/cluster-issuer: 'letsencrypt-prod'
-    # nginx.ingress.kubernetes.io/ssl-redirect: 'true'
+    certmanager.k8s.io/cluster-issuer: 'letsencrypt-prod' # inform nginx
+    nginx.ingress.kubernetes.io/ssl-redirect: 'true' # nginx force users to use https
 spec:
-  # tls:
-  #   - hosts:
-  #       - k8s-multi.com
-  #       - www.k8s-multi.com
-  #     secretName: k8s-multi-com
+  tls:
+    - hosts:
+        - sjl.io
+        - www.sjl.io
+      secretName: sjl-io
   rules:
-    # - host: k8s-multi.com
+    - host: sjl.io
     - http:
         paths:
           - path: /
@@ -25,14 +25,14 @@ spec:
             backend:
               serviceName: server-cluster-ip-service
               servicePort: 5000
-    # - host: www.k8s-multi.com
-    #   http:
-    #     paths:
-    #       - path: /
-    #         backend:
-    #           serviceName: client-cluster-ip-service
-    #           servicePort: 3000
-    #       - path: /api/
-    #         backend:
-    #           serviceName: server-cluster-ip-service
-    #           servicePort: 5000
+    - host: www.sjl.io
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: client-cluster-ip-service
+              servicePort: 3000
+          - path: /api/
+            backend:
+              serviceName: server-cluster-ip-service
+              servicePort: 5000
