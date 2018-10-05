@@ -9,7 +9,7 @@ docker push codesjl/multi-client:latest
 docker push codesjl/multi-server:latest
 docker push codesjl/multi-worker:latest
 
-# push the images to docker hub with latest SHA token
+# push the images to docker hub with latest SHA 
 docker push codesjl/multi-client:$SHA
 docker push codesjl/multi-server:$SHA
 docker push codesjl/multi-worker:$SHA
