@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: client-cluster-ip-service
+spec:
+  type: ClusterIP
+  selector:
+    component: web # provide access wen label pod from client-deployment file
+  ports:
+    - port: 3000 # the service port
+      targetPort: 3000 # port open for containerPort
