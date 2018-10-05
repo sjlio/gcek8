@@ -17,7 +17,7 @@ before_install:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker build -t codesjl/react-test -f ./client/Dockerfile.dev ./client
 
-sscript:
+script:
   - docker run codesjl/react-test npm test -- --coverage
 
 deploy:
